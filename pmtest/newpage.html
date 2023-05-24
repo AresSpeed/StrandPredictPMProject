@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StrandPredict</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+body {
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-size:100% 100%;
+  image-rendering: high-quality;
+  padding-top: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+/* Add custom styles for the modal */
+.modal-content {
+	background-color: #f5f5f5;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.modal-header {
+	border-bottom: none;
+}
+
+.modal-footer {
+	border-top: none;
+}
+
+.modal-footer button {
+	background-color: #0c6111;
+	color: white;
+}
+
+</style>
+
+<body>
+	<a href="index-1.html">
+		<button type="button" class="btn btn-default btn-sm" style="float: right;">
+			<span class="glyphicon glyphicon-log-out"></span> Log out
+		</button>
+	</a>
+		<div class="content-wrapper">
+			<div class="card">
+				<div class="card-header bg-dark ">
+					<h1 style="color: #0c6111;;"><b><center>StrandPredict</center></b></h1>
+				</div>
+				<div class="card-body">
+					<form id="quizForm" action="/result" method="post">
+							<div class="Q1"> 
+								<h4>Which of the following do you want to be when you grow up?</h4>
+								<div> 
+									<input type="radio" id="ABM" name="q1" value="ABM">
+									<label for="ABM">A: Accountant, Marketing Manager, Entrepreneur, Real Estate Broker, Politician</label>
+								</div>		
+								<div>
+									<input type="radio" id="HUMSS" name="q1" value="HUMSS">
+									<label for="HUMSS">B: Psychologist, Lawyer, Writer, Reporter, Priest</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q1" value="STEM">
+									<label for="STEM">C: Forensic Scientist, Astronaut, Game Developer, Doctor, Engineer</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q1" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q2">
+								<h4>Which of the following best describes you?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q2" value="ABM">
+									<label for="ABM">A: I love to think of creative new ideas and to take risks in my work. I am also skilled in influencing others.</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q2" value="HUMSS">
+									<label for="HUMSS">B: I am sociable and love working with others! I also enjoy giving them advice!</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q2" value="STEM">
+									<label for="STEM">C: I like to analyze unique situations logically and apply what I have been taught in understanding new things.</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q2" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q3">
+								<h4>What is your ultimate goal in life?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q3" value="ABM">
+									<label for="ABM">A: To own a successful business and to help a greater cause through a portion of its profit.</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q3" value="HUMSS">
+									<label for="HUMSS">B: To explore different cultures and write about them so that more people will know about them.</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q3" value="STEM">
+									<label for="STEM">C: To discover the cure to a disease or discover a new planet.</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q3" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q4">
+								<h4>What are you interested in learning?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q4" value="ABM">
+									<label for="ABM">A: Marketing, Finance, Business Math, Accounting, Management, Business Ethics, Economics</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q4" value="HUMSS">
+									<label for="HUMSS">B: Journalism, Politics and Governance, Psychology, Creative Writing, Social Sciences</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q4" value="STEM">
+									<label for="STEM">C: Biology, Organic Chemistry, Physics, Pre-Calculus, Calculus, Anatomy, Chemistry</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q4" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q5">
+								<h4>How do you spend your free time?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q5" value="ABM">
+									<label for="ABM">A: Selling on my online shop or watching Shark Tank.</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q5" value="HUMSS">
+									<label for="HUMSS">B: Writing stories or poems, reading up on the current events, or joining debates.</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q5" value="STEM">
+									<label for="STEM">C: Watching Grey's Anatomy or House MB and reading up on the latest scientific discoveries.</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q5" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q6">
+								<h4>What type of working environment do you thrive in?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q6" value="ABM">
+									<label for="ABM">A: A fast-paced industry with high competition.</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q6" value="HUMSS">
+									<label for="HUMSS">B: Having yuour own flexible schedule, and learning more about the worl and people in it.</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q6" value="STEM">
+									<label for="STEM">C: Inventing new ways to do things in a closed and controlled environment.</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q6" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q7">
+								<h4>What is your dream project?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q7" value="ABM">
+									<label for="ABM">A: To start your own business and work with multinational companies.</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q7" value="HUMSS">
+									<label for="HUMSS">B: To write your own bestselling novel or help the fight for justice.</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q7" value="STEM">
+									<label for="STEM">C: To work on a groundbreaking experiment or to cure people from a grave disease or to design and build a nice house.</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q7" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+							<div class="Q8">
+								<h4>What skills do you have?</h4>
+								<div>
+									<input type="radio" id="ABM" name="q8" value="ABM">
+									<label for="ABM">A: Innovative, Skilled with Numbers, Organized</label>
+								</div>
+								<div>
+									<input type="radio" id="HUMSS" name="q8" value="HUMSS">
+									<label for="HUMSS">B: Writing, Public Speaking, Creative Thinking</label>
+								</div>
+								<div>
+									<input type="radio" id="STEM" name="q8" value="STEM">
+									<label for="STEM">C: Critical Thinking, Analytical Skills, Problem-Solving</label>
+								</div>
+								<div>
+									<input type="radio" id="GAS" name="q8" value="GAS">
+									<label for="GAS">D: Not Sure/Undecided</label>
+								</div>
+							</div>
+						</div>
+						<center>
+							<button id="submitBtn" type="submit" class="btn btn-primary" style="background-color:#0c6111" disabled>Submit</button>
+							<button id="resetButton" type="reset" class="btn btn-primary" style="background-color:#0c6111">Reset</button>
+							<br>
+						</center> 
+					</form>
+					<br>
+				</div>
+				<footer>
+					<br>
+					<p><center>StrandPredict &copy; 2023</center></p>
+				</footer>
+				</div>	
+			</div>
+					<!-- Modal HTML -->
+			<div id="resultModal" class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Quiz Results</h4>
+						</div>
+						<div class="modal-body">
+							<p id="modalContent"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					const form = document.querySelector("#quizForm");
+					const submitBtn = document.querySelector("#submitBtn");
+
+					// Reset the form to its initial state
+					form.reset();
+
+					const enableSubmitBtn = () => {
+						submitBtn.disabled = !form.checkValidity();
+					};
+
+					form.addEventListener('change', enableSubmitBtn);
+
+					form.addEventListener('submit', function(e) {
+						e.preventDefault();
+
+						// Collect selected answers
+						const answers = [];
+						const selectedOptions = form.querySelectorAll('input[type="radio"]:checked');
+						selectedOptions.forEach(option => {
+							const questionId = option.name;
+							const answer = option.value;
+							answers.push({ questionId, answer });
+						});
+
+						// Generate the modal content
+						let modalContent = '';
+						answers.forEach(answer => {
+							const questionNumber = answer.questionId.replace('q', '');
+							const questionElement = form.querySelector(`[name="${answer.questionId}"]`);
+							const questionText = questionElement.parentNode.querySelector('label').innerText;
+							const answerText = questionElement.parentNode.querySelector(`label[for="${answer.answer}"]`).innerText;
+
+							modalContent += `<strong>Q${questionNumber}:</strong> ${questionText}<br>`;
+							modalContent += `<strong>Answer:</strong> ${answerText}<br><br>`;
+						});
+
+						// Set the modal content
+						const modalContentElement = document.querySelector("#modalContent");
+						modalContentElement.innerHTML = modalContent;
+
+						// Show the modal
+						$('#resultModal').modal('show');
+					});
+				});
+			</script>
+		</div>
+</body>
+
+</html>

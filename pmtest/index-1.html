@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="valid.js"></script>
+
+    <title>Log In | StrandPredict</title>
+</head>
+<body>
+    <br>
+	<center><img src="logo.png" class="hello"></center>
+
+    <!--SIGN IN HERE-->
+    <div class="form">
+        <h1>StrandPredict</h1>
+        <br>
+        <input 
+            type="text" 
+            name="" 
+            placeholder="Enter username" 
+            onkeyup="validateOnEnter(event)">
+
+        <input 
+            type="password" 
+            name="" placeholder="Enter at least 8 characters" 
+            id="pass" 
+            onkeyup="validatePassword(); validateOnEnter(event)">
+            <p id="password-info"></p>
+
+        <input 
+            type="submit" 
+            name="" 
+            value="Sign in" 
+            onclick="validate()">
+    
+        <!--FORGOT PASSWORD MODAL-->
+        <div class="ForgotPassword">
+            <small>
+                <center>
+                <input type="ForgotPassword" value="Forgot Password" onclick="openForgotPasswordModal()">
+                </center>
+            </small>
+            
+            <br>
+            <div id="forgotPasswordModal" class="modal">
+                <div class="modal-backdrop">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeForgotPasswordModal()">&times;</span>                 
+                        <h1 style="font-size: 26px;">Forgot Password</h1>
+                        <p>Enter your email address below to receive a password reset link:</p>
+                        <input type="email" name="forgot_email" placeholder="Enter your email address" required>
+                        <br>
+                        <button onclick="sendResetLink()">Send Reset Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            
+        <script>
+        function openForgotPasswordModal() {
+            var modal = document.getElementById("forgotPasswordModal");
+            modal.style.display = "block";
+            document.body.classList.add("modal-open");
+        }
+        
+        function closeForgotPasswordModal() {
+            var modal = document.getElementById("forgotPasswordModal");
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open");
+        }
+        </script>
+        <!--END OF FORGOT PASSWORD MODAL-->
+          
+
+        <!--SIGN-UP MODAL-->
+        <div class="sign-up">
+            <p style="font-size: 85%; text-align: center;">Don't have an account?
+                <input type="sign-up" value="Sign Up" onclick="openModal()">here
+            </p>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h1 style="color:#0c6111 ; font-size: 29px;">Create Account</h1>
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" name="last_name" placeholder="Enter last name" required>
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" name="first_name" placeholder="Enter first name" required>
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" name="email" placeholder="Enter email address" required>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" placeholder="Enter at least 8 characters" required>
+                <input type="password" name="password_repeat" placeholder="Repeat Password" required>
+                <p>By creating an account you agree to our <a href="#" style="color: dodgerblue">Terms and Privacy</a>.</p>
+                <br>
+                <input type="signup" name="sign-up" value="Sign up" onclick="submitAccount()">
+            </div>
+        </div>
+        
+        <script>
+            function openModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+            }
+        
+            function closeModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "none";
+            }
+        
+            function submitAccount() {
+            var lastNameInput = document.querySelector('input[name="last_name"]');
+            var firstNameInput = document.querySelector('input[name="first_name"]');
+            var emailInput = document.querySelector('input[name="email"]');
+            var passwordInput = document.querySelector('input[name="password"]');
+            var passwordRepeatInput = document.querySelector('input[name="password_repeat"]');
+
+            var lastName = lastNameInput.value.trim();
+            var firstName = firstNameInput.value.trim();
+            var email = emailInput.value.trim();
+            var password = passwordInput.value;
+            var passwordRepeat = passwordRepeatInput.value;
+
+            // Check if any fields are not completed
+            if (lastName === "" || firstName === "" || email === "" || password === "" || passwordRepeat === "") {
+                alert("Please complete all fields");
+                return;
+            }
+            // Validate last name
+            if (lastName === "") {
+                alert("Please enter your last name");
+                lastNameInput.focus();
+                return;
+            }
+
+            // Validate first name
+            if (firstName === "") {
+                alert("Please enter your first name");
+                firstNameInput.focus();
+                return;
+            }
+
+            // Validate email format
+            var emailRegex = /^\S+@\S+\.\S+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                emailInput.focus();
+                return;
+            }
+
+            // Validate password
+            if (passwordInput.value.length < 8) {
+                alert("Please enter at least 8 characters");
+                passwordInput.focus();
+                return;
+            }
+
+            // Validate password repeat
+            if (passwordRepeat === "") {
+                alert("Please repeat the password");
+                passwordRepeatInput.focus();
+                return;
+            }
+
+            if (password !== passwordRepeat) {
+                alert("The passwords do not match");
+                passwordRepeatInput.focus();
+                return;
+            }
+
+            // Clear the input fields
+            lastNameInput.value = "";
+            firstNameInput.value = "";
+            emailInput.value = "";
+            passwordInput.value = "";
+            passwordRepeatInput.value = "";
+
+            // Display confirmation dialog
+            var confirmation = confirm("Are you sure you want to create this account?");
+            if (!confirmation) {
+                return;
+            }
+
+            closeModal();
+        }
+        //END OF SIGN-UP MODAL
+
+        //VALIDATE PASSWORD WHEN SIGNING IN
+        function validatePassword() {
+            const passwordInput = document.getElementById("pass");
+            const passwordInfo = document.getElementById("password-info");
+            if (passwordInput.value.length < 8) {
+                passwordInfo.innerText = "";
+            } else {
+                passwordInfo.innerText = "";
+            }
+        }
+
+        function validateOnEnter(event) {
+            if (event.keyCode === 13) {
+                validate();
+            }
+        }
+        //END OF PASSWORD VALIDATION WHEN SIGNING IN
+    </script>
+    <!--END OF SCRIPT-->
+   
+</body>
+</html>
